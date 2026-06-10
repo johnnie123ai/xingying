@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星影集 — 摄影·天文·Vlog分享</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 星空背景 -->
+  <div class="star-field" id="starField"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo" onclick="navigate('home')">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">星影集</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-item active" onclick="navigate('home')">首页</a>
+        <a href="#photo" class="nav-item" onclick="navigate('photo')">摄影知识</a>
+        <a href="#astro" class="nav-item" onclick="navigate('astro')">天文知识</a>
+        <a href="#vlog" class="nav-item" onclick="navigate('vlog')">Vlog技巧</a>
+        <a href="#about" class="nav-item" onclick="navigate('about')">关于</a>
+      </div>
+      <div class="nav-actions">
+        <div class="search-box" id="searchBox">
+          <input type="text" placeholder="搜索文章..." id="searchInput" onfocus="showSearch()" onblur="hideSearch()">
+          <button class="search-btn" onclick="toggleSearch()">🔍</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌙</button>
+        <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <main class="main-content">
+    <!-- 首页 -->
+    <section id="home" class="page active">
+      <!-- Hero区域 -->
+      <div class="hero">
+        <h1 class="hero-title">用镜头捕捉星空，<br>用文字记录光影</h1>
+        <p class="hero-subtitle">分享摄影技巧 · 天文知识 · Vlog拍摄心得</p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">128</span>
+            <span class="stat-label">篇原创</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">56</span>
+            <span class="stat-label">K+阅读</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">2.3K</span>
+            <span class="stat-label">关注者</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 分类入口 -->
+      <div class="category-section">
+        <h2 class="section-title">探索领域</h2>
+        <div class="category-grid">
+          <div class="category-card" onclick="navigate('photo')">
+            <div class="category-icon">📸</div>
+            <h3>摄影知识</h3>
+            <p>从入门到精通，涵盖相机设置、构图技巧、后期修图</p>
+            <span class="category-count">32篇文章</span>
+          </div>
+          <div class="category-card" onclick="navigate('astro')">
+            <div class="category-icon">🔭</div>
+            <h3>天文知识</h3>
+            <p>星空观测、星座识别、深空天体、行星科学</p>
+            <span class="category-count">45篇文章</span>
+          </div>
+          <div class="category-card" onclick="navigate('vlog')">
+            <div class="category-icon">🎬</div>
+            <h3>Vlog技巧</h3>
+            <p>拍摄技巧、剪辑方法、设备推荐、叙事结构</p>
+            <span class="category-count">51篇文章</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 最新文章 -->
+      <div class="recent-section">
+        <div class="section-header">
+          <h2 class="section-title">最新文章</h2>
+          <a href="#more" class="view-more" onclick="navigate('home')">查看全部 →</a>
+        </div>
+        <div class="article-grid" id="recentArticles">
+          <!-- 由JS生成 -->
+        </div>
+      </div>
+
+      <!-- 热门标签 -->
+      <div class="tags-section">
+        <h2 class="section-title">热门标签</h2>
+        <div class="tag-cloud" id="tagCloud">
+          <!-- 由JS生成 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 摄影知识页 -->
+    <section id="photo" class="page">
+      <div class="category-header">
+        <span class="category-badge">📸</span>
+        <h1>摄影知识</h1>
+        <p>从光圈、快门、ISO的奥秘，到构图、光线、后期，陪你一步步掌握摄影语言</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterArticles('photo','all')">全部</button>
+        <button class="filter-btn" onclick="filterArticles('photo','basic')">基础知识</button>
+        <button class="filter-btn" onclick="filterArticles('photo','composition')">构图技巧</button>
+        <button class="filter-btn" onclick="filterArticles('photo','post')">后期修图</button>
+        <button class="filter-btn" onclick="filterArticles('photo','night')">夜景星空</button>
+      </div>
+      <div class="article-grid" id="photoArticles">
+        <!-- 由JS生成 -->
+      </div>
+    </section>
+
+    <!-- 天文知识页 -->
+    <section id="astro" class="page">
+      <div class="category-header">
+        <span class="category-badge">🔭</span>
+        <h1>天文知识</h1>
+        <p>仰望星空，探索宇宙的奥秘——从星座识别到深空天体，从行星科学到宇宙演化</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterArticles('astro','all')">全部</button>
+        <button class="filter-btn" onclick="filterArticles('astro','constellation')">星座观测</button>
+        <button class="filter-btn" onclick="filterArticles('astro','deep')">深空天体</button>
+        <button class="filter-btn" onclick="filterArticles('astro','planetary')">行星科学</button>
+        <button class="filter-btn" onclick="filterArticles('astro','telescope')">望远镜指南</button>
+      </div>
+      <div class="article-grid" id="astroArticles">
+        <!-- 由JS生成 -->
+      </div>
+    </section>
+
+    <!-- Vlog技巧页 -->
+    <section id="vlog" class="page">
+      <div class="category-header">
+        <span class="category-badge">🎬</span>
+        <h1>Vlog技巧</h1>
+        <p>从设备选择到拍摄手法，从剪辑技巧到叙事节奏，让你的Vlog更加精彩</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterArticles('vlog','all')">全部</button>
+        <button class="filter-btn" onclick="filterArticles('vlog','shooting')">拍摄技巧</button>
+        <button class="filter-btn" onclick="filterArticles('vlog','editing')">剪辑方法</button>
+        <button class="filter-btn" onclick="filterArticles('vlog','gear')">设备推荐</button>
+        <button class="filter-btn" onclick="filterArticles('vlog','story')">叙事结构</button>
+      </div>
+      <div class="article-grid" id="vlogArticles">
+        <!-- 由JS生成 -->
+      </div>
+    </section>
+
+    <!-- 关于页 -->
+    <section id="about" class="page">
+      <div class="about-container">
+        <div class="about-avatar">
+          <div class="avatar-placeholder">✦</div>
+        </div>
+        <h1>关于星影集</h1>
+        <div class="about-content">
+          <p class="about-text">
+            大家好！这里是星影集，一个专注于摄影、天文和Vlog分享的个人博客。
+            我相信每一个仰望星空的夜晚都值得被记录，每一束光线都值得被捕捉。
+          </p>
+          <p class="about-text">
+            我在这里分享：
+          </p>
+          <ul class="about-list">
+            <li>📸 摄影知识 — 从入门到进阶的摄影技巧与心得</li>
+            <li>🔭 天文知识 — 星空观测指南与宇宙科普</li>
+            <li>🎬 Vlog技巧 — 拍摄、剪辑、设备全攻略</li>
+          </ul>
+          <p class="about-text">
+            希望这些内容能帮助你更好地探索这个世界的光与影。如果你有疑问或建议，欢迎通过以下方式联系我。
+          </p>
+          <div class="contact-section">
+            <h3>📬 联系方式</h3>
+            <p>邮箱：hello@starryblog.com</p>
+            <p>微博：@星影集</p>
+            <p>B站：@星影集</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <p class="footer-logo">✦ 星影集</p>
+        <p class="footer-text">用镜头捕捉星空，用文字记录光影</p>
+      </div>
+      <div class="footer-center">
+        <a href="#home" onclick="navigate('home')">首页</a>
+        <a href="#photo" onclick="navigate('photo')">摄影</a>
+        <a href="#astro" onclick="navigate('astro')">天文</a>
+        <a href="#vlog" onclick="navigate('vlog')">Vlog</a>
+        <a href="#about" onclick="navigate('about')">关于</a>
+      </div>
+      <div class="footer-right">
+        <p class="copyright">© 2026 星影集. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
